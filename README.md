@@ -1,7 +1,3 @@
-Berikut adalah draft file `README.md` untuk repositori GitHub [Analitik\_Penjualan](https://github.com/TeknoGenX/Analitik_Penjualan), disesuaikan dengan struktur dan konteks proyek Django yang kamu berikan:
-
----
-
 ## 📊 Analitik Penjualan
 
 Proyek ini adalah aplikasi web **Analitik Penjualan** berbasis **Django** yang memungkinkan pengguna untuk mengelola portofolio proyek, analisis data penjualan, dashboard interaktif, form kontak, dan blog sederhana. Dibangun dengan prinsip modular dan terstruktur, proyek ini cocok untuk pembelajaran dan pengembangan sistem analitik internal perusahaan.
@@ -119,4 +115,3 @@ Pull Request dan Issue sangat dipersilakan! Jangan lupa beri bintang ⭐ kalau k
 
 ---
 
-Kalau kamu ingin README ini otomatis disisipkan ke repo lokal atau diunggah sebagai file `README.md`, beri tahu saja.
