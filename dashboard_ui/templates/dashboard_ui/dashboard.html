@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <h1 class="mb-4">📊 Admin Dashboard</h1>
+
+  <!-- Summary Cards -->
+  <div class="row g-4 mb-4">
+    <div class="col-md-4">
+      <div class="card text-bg-primary shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title">Total Projects</h5>
+          <p class="display-6 mb-0">{{ total_projects }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-bg-success shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title">Total Comments</h5>
+          <p class="display-6 mb-0">{{ total_comments }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-bg-warning shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title">Top Categories</h5>
+          <ul class="list-unstyled mb-0">
+            {% for cat, count in top_categories %}
+              <li>📌 {{ cat|title }} — <strong>{{ count }}</strong></li>
+            {% empty %}
+              <li class="text-muted">No data</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Activity -->
+  <div class="row">
+    <!-- Recent Projects -->
+    <div class="col-lg-6 mb-4">
+      <h4>🧩 Recent Projects</h4>
+      <ul class="list-group shadow-sm">
+        {% for project in recent_projects %}
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+              <strong>{{ project.title }}</strong><br>
+              <small class="text-muted">📅 {{ project.created_at|date:"M d, Y" }}</small>
+            </div>
+            <a href="{% url 'project_detail' project.pk %}" class="btn btn-sm btn-outline-primary">View</a>
+          </li>
+        {% empty %}
+          <li class="list-group-item text-muted">No recent projects.</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <!-- Recent Comments -->
+    <div class="col-lg-6 mb-4">
+      <h4>💬 Recent Comments</h4>
+      <ul class="list-group shadow-sm">
+        {% for comment in recent_comments %}
+          <li class="list-group-item">
+            <strong>{{ comment.name }}</strong> on 
+            <a href="{% url 'project_detail' comment.project.pk %}" class="text-decoration-none">
+              <em>{{ comment.project.title }}</em>
+            </a><br>
+            <small class="text-muted">🕒 {{ comment.created_at|timesince }} ago</small><br>
+            {{ comment.text|truncatewords:15 }}
+          </li>
+        {% empty %}
+          <li class="list-group-item text-muted">No comments yet.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}
